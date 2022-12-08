@@ -1,0 +1,57 @@
+﻿<Window x:Class="Lenkovec.Operation"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lenkovec"
+        mc:Ignorable="d"
+        Title="Operation" Height="450" Width="800">
+    <Grid Margin="0,0,0.333,-5.333">
+        <DataGrid x:Name="One" Margin="0,10,170.333,220.667" Background="#FFFFFCCA"   ></DataGrid>
+        <Button Content="Должность" HorizontalAlignment="Left" Margin="653,62,0,0" VerticalAlignment="Top" Width="130" Click="Button_Click_1" Background="White"/>
+        <Button Content="Преподаватель" HorizontalAlignment="Left" Margin="653,36,0,0" VerticalAlignment="Top" Width="130" RenderTransformOrigin="-0.471,0.097" Click="Button_Click" Background="White"/>
+        <Button Content="Ученая Степень" HorizontalAlignment="Left" Margin="653,88,0,0" VerticalAlignment="Top" Width="130" Click="Button_Click_2" Background="White"/>
+        <Button Content="Предмет" HorizontalAlignment="Left" Margin="653,140,0,0" VerticalAlignment="Top" Width="130" Click="Button_Click_3" Background="White"/>
+        <Button Content="Нагрузка" HorizontalAlignment="Left" Margin="653,114,0,0" VerticalAlignment="Top" Width="130" Click="Button_Click_4" Background="White"/>
+        <Button Content="Группа" HorizontalAlignment="Left" Margin="653,10,0,0" VerticalAlignment="Top" Width="130" Click="Button_Click_5" Background="White"/>
+        <Button Content="Удалить" HorizontalAlignment="Left" Margin="653,192,0,0" VerticalAlignment="Top" Width="130" Height="21" Click="Button_Click_7" Background="White"/>
+
+        <Button x:Name="otchet" Content="отчет" HorizontalAlignment="Left" Margin="681,343,0,0" VerticalAlignment="Top" Width="75" Click="otchet_Click" BorderBrush="White" Background="#FFFAFAFA"/>
+        <Button Content="Добавить" HorizontalAlignment="Left" Margin="653,166,0,0" VerticalAlignment="Top" Width="130" Click="Button_Click_6" Background="White"/>
+        <TextBox x:Name="numgroup" HorizontalAlignment="Left" Height="23" Margin="10,236,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="81"/>
+        <ComboBox x:Name="kodnagruzki" HorizontalAlignment="Left" Margin="10,266,0,0" VerticalAlignment="Top" Width="81" Loaded="kodnagruzki_Loaded"/>
+        <Label Content="Группа" HorizontalAlignment="Left" Margin="10,205,0,0" VerticalAlignment="Top"/>
+        <Label Content="Преподаватель" HorizontalAlignment="Left" Margin="120,205,0,0" VerticalAlignment="Top"/>
+        
+        <TextBox x:Name="name" HorizontalAlignment="Left" Height="23" Margin="120,237,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="112"/>
+        <TextBox x:Name="surname" HorizontalAlignment="Left" Height="23" Margin="120,265,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="112"/>
+        <TextBox x:Name="otchestvo" HorizontalAlignment="Left" Height="23" Margin="120,293,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="112"/>
+        <TextBox x:Name="staz" HorizontalAlignment="Left" Height="23" Margin="120,321,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="112"/>
+        <TextBox x:Name="telefon" HorizontalAlignment="Left" Height="23" Margin="120,349,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="112"/>
+
+        <ComboBox x:Name="koddols" HorizontalAlignment="Left" Margin="120,372,0,0" VerticalAlignment="Top" Width="112" Loaded="koddols_Loaded" />
+        <ComboBox x:Name="kodus" HorizontalAlignment="Left" Margin="120,394,0,0" VerticalAlignment="Top" Width="112" Loaded="kodus_Loaded" />
+
+        <Label Content="Должность" HorizontalAlignment="Left" Margin="10,303,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="naum" HorizontalAlignment="Left" Height="23" Margin="10,334,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="81"/>
+        <TextBox x:Name="oklad" HorizontalAlignment="Left" Height="23" Margin="10,362,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="81"/>
+       
+        <TextBox x:Name="s" HorizontalAlignment="Left" Height="23" Margin="255,236,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="94"/>
+        <Label Content="УченаяСтепень" HorizontalAlignment="Left" Margin="255,210,0,0" VerticalAlignment="Top"/>
+
+        <Label Content="Нагрузка" HorizontalAlignment="Left" Margin="254,259,0,0" VerticalAlignment="Top"/>
+        <TextBox x:Name="Ours" HorizontalAlignment="Left" Height="23" Margin="255,293,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="112"/>
+        <TextBox x:Name="Pred" HorizontalAlignment="Left" Height="23" Margin="255,321,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="112"/>
+
+        <ComboBox x:Name="kodpred" HorizontalAlignment="Left" Margin="255,350,0,0" VerticalAlignment="Top" Width="112" Loaded="kodpred_Loaded"  />
+        <ComboBox x:Name="kodprepod" HorizontalAlignment="Left" Margin="255,377,0,0" VerticalAlignment="Top" Width="112" Loaded="kodprepod_Loaded"  />
+
+
+        <TextBox x:Name="nameeee" HorizontalAlignment="Left" Height="23" Margin="400,293,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="112"/>
+        <TextBox x:Name="chas" HorizontalAlignment="Left" Height="23" Margin="400,262,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="112"/>
+
+        <Label Content="Предмет" HorizontalAlignment="Left" Margin="400,228,0,0" VerticalAlignment="Top"/>
+        <Button Content="Button" HorizontalAlignment="Left" Margin="664,260,0,0" VerticalAlignment="Top" Width="75" Click="Button_Click_8"/>
+
+    </Grid>
+</Window>

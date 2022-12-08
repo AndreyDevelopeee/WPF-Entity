@@ -1,0 +1,46 @@
+﻿<Window x:Class="Lenkovec.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Lenkovec"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="800">
+    <Grid>
+
+        <DataGrid x:Name="One" Margin="0,0,157.333,174.667" Background="#FFFFF76B" ></DataGrid>
+        <Button Content="Должность" HorizontalAlignment="Left" Margin="653,62,0,0" VerticalAlignment="Top" Width="130" Click="Button_Click_1" Background="White"/>
+        <Button Content="Преподаватель" HorizontalAlignment="Left" Margin="653,36,0,0" VerticalAlignment="Top" Width="130" RenderTransformOrigin="-0.471,0.097" Click="Button_Click" Background="White"/>
+        <Button Content="Ученая Степень" HorizontalAlignment="Left" Margin="653,88,0,0" VerticalAlignment="Top" Width="130" Click="Button_Click_2" Background="White"/>
+        <Button Content="Предмет" HorizontalAlignment="Left" Margin="653,140,0,0" VerticalAlignment="Top" Width="130" Click="Button_Click_3" Background="White"/>
+        <Button Content="Нагрузка" HorizontalAlignment="Left" Margin="653,114,0,0" VerticalAlignment="Top" Width="130" Click="Button_Click_4" Background="White"/>
+        <Button Content="Группа" HorizontalAlignment="Left" Margin="653,10,0,0" VerticalAlignment="Top" Width="130" Click="Button_Click_5" Background="White"/>
+        <Button Content="Представление" HorizontalAlignment="Left" Margin="653,166,0,0" VerticalAlignment="Top" Width="130" Click="Button_Click_6" Background="White"/>
+        <TextBox x:Name="MyTxt" HorizontalAlignment="Left" Height="23" Margin="350,373,0,0" TextWrapping="Wrap" Text="" VerticalAlignment="Top" Width="120" TextChanged="MyTxt_TextChanged"/>
+        <Button Content="Сортировать" HorizontalAlignment="Left" Margin="189,375,0,0" VerticalAlignment="Top" Width="120" Click="Button_Click_8" Background="White"/>
+
+        <ComboBox x:Name="sort" Height="25" Width="150"  Margin="10,375,633.333,20.667" >
+            <ComboBox.Background>
+                <LinearGradientBrush EndPoint="0,1" StartPoint="0,0">
+                    <GradientStop Color="#FFF0F0F0" Offset="0"/>
+                    <GradientStop Color="#FF3D2E86" Offset="1"/>
+                </LinearGradientBrush>
+            </ComboBox.Background>
+            <TextBlock>Учеба</TextBlock>
+            <TextBlock>Стаж</TextBlock>
+            <TextBlock>Телефон</TextBlock>
+            <TextBlock>НаименованиеДолжности</TextBlock>
+            <TextBlock>Оклад</TextBlock>
+            <TextBlock>НаименованиеУчёнойСтепени</TextBlock>
+            <TextBlock>Колвочасов</TextBlock>
+            <TextBlock>Колвопредметов</TextBlock>
+            <TextBlock>Название</TextBlock>
+            <TextBlock>Часы</TextBlock>
+            <TextBlock>NumГруппы</TextBlock>
+
+        </ComboBox>
+        <Button Content="Операции с бд" HorizontalAlignment="Left" Margin="619,364,0,0" VerticalAlignment="Top" Width="149" Height="36" Click="Button_Click_9" Background="White"/>
+        <Button Content="exit" HorizontalAlignment="Left" Margin="653,281,0,0" VerticalAlignment="Top" Width="102" Height="37" Click="Update" Background="White"/>
+
+    </Grid>
+</Window>

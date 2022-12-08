@@ -1,0 +1,499 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище LenkovetssModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Группа">
+          <Key>
+            <PropertyRef Name="IdГруппы" />
+          </Key>
+          <Property Name="IdГруппы" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="NumГруппы" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="КодНагрузки" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Должность">
+          <Key>
+            <PropertyRef Name="IdДолжности" />
+          </Key>
+          <Property Name="IdДолжности" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="НаименованиеДолжности" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Оклад" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Нагрузка">
+          <Key>
+            <PropertyRef Name="IdНагрузки" />
+          </Key>
+          <Property Name="IdНагрузки" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Колвочасов" Type="int" Nullable="false" />
+          <Property Name="Колвопредметов" Type="int" />
+          <Property Name="КодПредмета" Type="int" Nullable="false" />
+          <Property Name="КодПреподавателя" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Предмет">
+          <Key>
+            <PropertyRef Name="IdПредмета" />
+          </Key>
+          <Property Name="IdПредмета" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Часы" Type="int" Nullable="false" />
+          <Property Name="Название" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Преподаватель">
+          <Key>
+            <PropertyRef Name="IdПреподавателя" />
+          </Key>
+          <Property Name="IdПреподавателя" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Имя" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Фамилия" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Отчество" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Стаж" Type="int" Nullable="false" />
+          <Property Name="Телефон" Type="nvarchar" MaxLength="40" />
+          <Property Name="КодДолжности" Type="int" Nullable="false" />
+          <Property Name="КодУчёнойСтепени" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="УчёнаяСтепень">
+          <Key>
+            <PropertyRef Name="IdУчёнойСтепени" />
+          </Key>
+          <Property Name="IdУчёнойСтепени" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="НаименованиеУчёнойСтепени" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <!--Ошибки, обнаруженные при создании:
+предупреждение 6002: В таблице или представлении "Lenkovetss.dbo.ALLS" не определен первичный ключ. Ключ был выведен, а определение таблицы или представления было создано в режиме только для чтения.-->
+        <EntityType Name="ALLS">
+          <Key>
+            <PropertyRef Name="Учеба" />
+            <PropertyRef Name="Стаж" />
+            <PropertyRef Name="НаименованиеДолжности" />
+            <PropertyRef Name="Оклад" />
+            <PropertyRef Name="НаименованиеУчёнойСтепени" />
+            <PropertyRef Name="Колвочасов" />
+            <PropertyRef Name="Название" />
+            <PropertyRef Name="Часы" />
+            <PropertyRef Name="NumГруппы" />
+          </Key>
+          <Property Name="Учеба" Type="nvarchar" MaxLength="15" Nullable="false" />
+          <Property Name="Стаж" Type="int" Nullable="false" />
+          <Property Name="Телефон" Type="nvarchar" MaxLength="40" />
+          <Property Name="НаименованиеДолжности" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Оклад" Type="int" Nullable="false" />
+          <Property Name="НаименованиеУчёнойСтепени" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Колвочасов" Type="int" Nullable="false" />
+          <Property Name="Колвопредметов" Type="int" />
+          <Property Name="Название" Type="nvarchar" MaxLength="30" Nullable="false" />
+          <Property Name="Часы" Type="int" Nullable="false" />
+          <Property Name="NumГруппы" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_КодДолжности">
+          <End Role="Должность" Type="Self.Должность" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Преподаватель" Type="Self.Преподаватель" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Должность">
+              <PropertyRef Name="IdДолжности" />
+            </Principal>
+            <Dependent Role="Преподаватель">
+              <PropertyRef Name="КодДолжности" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_КодНагрузки">
+          <End Role="Нагрузка" Type="Self.Нагрузка" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Группа" Type="Self.Группа" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Нагрузка">
+              <PropertyRef Name="IdНагрузки" />
+            </Principal>
+            <Dependent Role="Группа">
+              <PropertyRef Name="КодНагрузки" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_КодПредмета">
+          <End Role="Предмет" Type="Self.Предмет" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Нагрузка" Type="Self.Нагрузка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Предмет">
+              <PropertyRef Name="IdПредмета" />
+            </Principal>
+            <Dependent Role="Нагрузка">
+              <PropertyRef Name="КодПредмета" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_КодПреподавателя">
+          <End Role="Преподаватель" Type="Self.Преподаватель" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Нагрузка" Type="Self.Нагрузка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Преподаватель">
+              <PropertyRef Name="IdПреподавателя" />
+            </Principal>
+            <Dependent Role="Нагрузка">
+              <PropertyRef Name="КодПреподавателя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_КодУчёнойСтепени">
+          <End Role="УчёнаяСтепень" Type="Self.УчёнаяСтепень" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Преподаватель" Type="Self.Преподаватель" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="УчёнаяСтепень">
+              <PropertyRef Name="IdУчёнойСтепени" />
+            </Principal>
+            <Dependent Role="Преподаватель">
+              <PropertyRef Name="КодУчёнойСтепени" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище LenkovetssModelContainer">
+          <EntitySet Name="Группа" EntityType="Self.Группа" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Должность" EntityType="Self.Должность" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Нагрузка" EntityType="Self.Нагрузка" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Предмет" EntityType="Self.Предмет" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Преподаватель" EntityType="Self.Преподаватель" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="УчёнаяСтепень" EntityType="Self.УчёнаяСтепень" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ALLS" EntityType="Self.ALLS" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ALLS].[Учеба] AS [Учеба], 
+    [ALLS].[Стаж] AS [Стаж], 
+    [ALLS].[Телефон] AS [Телефон], 
+    [ALLS].[НаименованиеДолжности] AS [НаименованиеДолжности], 
+    [ALLS].[Оклад] AS [Оклад], 
+    [ALLS].[НаименованиеУчёнойСтепени] AS [НаименованиеУчёнойСтепени], 
+    [ALLS].[Колвочасов] AS [Колвочасов], 
+    [ALLS].[Колвопредметов] AS [Колвопредметов], 
+    [ALLS].[Название] AS [Название], 
+    [ALLS].[Часы] AS [Часы], 
+    [ALLS].[NumГруппы] AS [NumГруппы]
+    FROM [dbo].[ALLS] AS [ALLS]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="fk_КодДолжности" Association="Self.fk_КодДолжности">
+            <End Role="Должность" EntitySet="Должность" />
+            <End Role="Преподаватель" EntitySet="Преподаватель" />
+          </AssociationSet>
+          <AssociationSet Name="fk_КодНагрузки" Association="Self.fk_КодНагрузки">
+            <End Role="Нагрузка" EntitySet="Нагрузка" />
+            <End Role="Группа" EntitySet="Группа" />
+          </AssociationSet>
+          <AssociationSet Name="fk_КодПредмета" Association="Self.fk_КодПредмета">
+            <End Role="Предмет" EntitySet="Предмет" />
+            <End Role="Нагрузка" EntitySet="Нагрузка" />
+          </AssociationSet>
+          <AssociationSet Name="fk_КодПреподавателя" Association="Self.fk_КодПреподавателя">
+            <End Role="Преподаватель" EntitySet="Преподаватель" />
+            <End Role="Нагрузка" EntitySet="Нагрузка" />
+          </AssociationSet>
+          <AssociationSet Name="fk_КодУчёнойСтепени" Association="Self.fk_КодУчёнойСтепени">
+            <End Role="УчёнаяСтепень" EntitySet="УчёнаяСтепень" />
+            <End Role="Преподаватель" EntitySet="Преподаватель" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="LenkovetssModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Группа">
+          <Key>
+            <PropertyRef Name="IdГруппы" />
+          </Key>
+          <Property Name="IdГруппы" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="NumГруппы" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="КодНагрузки" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Нагрузка" Relationship="Self.fk_КодНагрузки" FromRole="Группа" ToRole="Нагрузка" />
+        </EntityType>
+        <EntityType Name="Должность">
+          <Key>
+            <PropertyRef Name="IdДолжности" />
+          </Key>
+          <Property Name="IdДолжности" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="НаименованиеДолжности" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Оклад" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Преподаватель" Relationship="Self.fk_КодДолжности" FromRole="Должность" ToRole="Преподаватель" />
+        </EntityType>
+        <EntityType Name="Нагрузка">
+          <Key>
+            <PropertyRef Name="IdНагрузки" />
+          </Key>
+          <Property Name="IdНагрузки" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Колвочасов" Type="Int32" Nullable="false" />
+          <Property Name="Колвопредметов" Type="Int32" />
+          <Property Name="КодПредмета" Type="Int32" Nullable="false" />
+          <Property Name="КодПреподавателя" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Группа" Relationship="Self.fk_КодНагрузки" FromRole="Нагрузка" ToRole="Группа" />
+          <NavigationProperty Name="Предмет" Relationship="Self.fk_КодПредмета" FromRole="Нагрузка" ToRole="Предмет" />
+          <NavigationProperty Name="Преподаватель" Relationship="Self.fk_КодПреподавателя" FromRole="Нагрузка" ToRole="Преподаватель" />
+        </EntityType>
+        <EntityType Name="Предмет">
+          <Key>
+            <PropertyRef Name="IdПредмета" />
+          </Key>
+          <Property Name="IdПредмета" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Часы" Type="Int32" Nullable="false" />
+          <Property Name="Название" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Нагрузка" Relationship="Self.fk_КодПредмета" FromRole="Предмет" ToRole="Нагрузка" />
+        </EntityType>
+        <EntityType Name="Преподаватель">
+          <Key>
+            <PropertyRef Name="IdПреподавателя" />
+          </Key>
+          <Property Name="IdПреподавателя" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Имя" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Фамилия" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Отчество" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Стаж" Type="Int32" Nullable="false" />
+          <Property Name="Телефон" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="КодДолжности" Type="Int32" Nullable="false" />
+          <Property Name="КодУчёнойСтепени" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Должность" Relationship="Self.fk_КодДолжности" FromRole="Преподаватель" ToRole="Должность" />
+          <NavigationProperty Name="Нагрузка" Relationship="Self.fk_КодПреподавателя" FromRole="Преподаватель" ToRole="Нагрузка" />
+          <NavigationProperty Name="УчёнаяСтепень" Relationship="Self.fk_КодУчёнойСтепени" FromRole="Преподаватель" ToRole="УчёнаяСтепень" />
+        </EntityType>
+        <EntityType Name="УчёнаяСтепень">
+          <Key>
+            <PropertyRef Name="IdУчёнойСтепени" />
+          </Key>
+          <Property Name="IdУчёнойСтепени" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="НаименованиеУчёнойСтепени" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Преподаватель" Relationship="Self.fk_КодУчёнойСтепени" FromRole="УчёнаяСтепень" ToRole="Преподаватель" />
+        </EntityType>
+        <EntityType Name="ALLS">
+          <Key>
+            <PropertyRef Name="Учеба" />
+            <PropertyRef Name="Стаж" />
+            <PropertyRef Name="НаименованиеДолжности" />
+            <PropertyRef Name="Оклад" />
+            <PropertyRef Name="НаименованиеУчёнойСтепени" />
+            <PropertyRef Name="Колвочасов" />
+            <PropertyRef Name="Название" />
+            <PropertyRef Name="Часы" />
+            <PropertyRef Name="NumГруппы" />
+          </Key>
+          <Property Name="Учеба" Type="String" MaxLength="15" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Стаж" Type="Int32" Nullable="false" />
+          <Property Name="Телефон" Type="String" MaxLength="40" FixedLength="false" Unicode="true" />
+          <Property Name="НаименованиеДолжности" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Оклад" Type="Int32" Nullable="false" />
+          <Property Name="НаименованиеУчёнойСтепени" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Колвочасов" Type="Int32" Nullable="false" />
+          <Property Name="Колвопредметов" Type="Int32" />
+          <Property Name="Название" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Часы" Type="Int32" Nullable="false" />
+          <Property Name="NumГруппы" Type="String" MaxLength="10" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <Association Name="fk_КодНагрузки">
+          <End Role="Нагрузка" Type="Self.Нагрузка" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Группа" Type="Self.Группа" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Нагрузка">
+              <PropertyRef Name="IdНагрузки" />
+            </Principal>
+            <Dependent Role="Группа">
+              <PropertyRef Name="КодНагрузки" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_КодДолжности">
+          <End Role="Должность" Type="Self.Должность" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Преподаватель" Type="Self.Преподаватель" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Должность">
+              <PropertyRef Name="IdДолжности" />
+            </Principal>
+            <Dependent Role="Преподаватель">
+              <PropertyRef Name="КодДолжности" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_КодПредмета">
+          <End Role="Предмет" Type="Self.Предмет" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Нагрузка" Type="Self.Нагрузка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Предмет">
+              <PropertyRef Name="IdПредмета" />
+            </Principal>
+            <Dependent Role="Нагрузка">
+              <PropertyRef Name="КодПредмета" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_КодПреподавателя">
+          <End Role="Преподаватель" Type="Self.Преподаватель" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Нагрузка" Type="Self.Нагрузка" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Преподаватель">
+              <PropertyRef Name="IdПреподавателя" />
+            </Principal>
+            <Dependent Role="Нагрузка">
+              <PropertyRef Name="КодПреподавателя" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="fk_КодУчёнойСтепени">
+          <End Role="УчёнаяСтепень" Type="Self.УчёнаяСтепень" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Преподаватель" Type="Self.Преподаватель" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="УчёнаяСтепень">
+              <PropertyRef Name="IdУчёнойСтепени" />
+            </Principal>
+            <Dependent Role="Преподаватель">
+              <PropertyRef Name="КодУчёнойСтепени" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="LenkovetssEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Группа" EntityType="Self.Группа" />
+          <EntitySet Name="Должность" EntityType="Self.Должность" />
+          <EntitySet Name="Нагрузка" EntityType="Self.Нагрузка" />
+          <EntitySet Name="Предмет" EntityType="Self.Предмет" />
+          <EntitySet Name="Преподаватель" EntityType="Self.Преподаватель" />
+          <EntitySet Name="УчёнаяСтепень" EntityType="Self.УчёнаяСтепень" />
+          <EntitySet Name="ALLS" EntityType="Self.ALLS" />
+          <AssociationSet Name="fk_КодНагрузки" Association="Self.fk_КодНагрузки">
+            <End Role="Нагрузка" EntitySet="Нагрузка" />
+            <End Role="Группа" EntitySet="Группа" />
+          </AssociationSet>
+          <AssociationSet Name="fk_КодДолжности" Association="Self.fk_КодДолжности">
+            <End Role="Должность" EntitySet="Должность" />
+            <End Role="Преподаватель" EntitySet="Преподаватель" />
+          </AssociationSet>
+          <AssociationSet Name="fk_КодПредмета" Association="Self.fk_КодПредмета">
+            <End Role="Предмет" EntitySet="Предмет" />
+            <End Role="Нагрузка" EntitySet="Нагрузка" />
+          </AssociationSet>
+          <AssociationSet Name="fk_КодПреподавателя" Association="Self.fk_КодПреподавателя">
+            <End Role="Преподаватель" EntitySet="Преподаватель" />
+            <End Role="Нагрузка" EntitySet="Нагрузка" />
+          </AssociationSet>
+          <AssociationSet Name="fk_КодУчёнойСтепени" Association="Self.fk_КодУчёнойСтепени">
+            <End Role="УчёнаяСтепень" EntitySet="УчёнаяСтепень" />
+            <End Role="Преподаватель" EntitySet="Преподаватель" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище LenkovetssModelContainer" CdmEntityContainer="LenkovetssEntities">
+          <EntitySetMapping Name="Группа">
+            <EntityTypeMapping TypeName="LenkovetssModel.Группа">
+              <MappingFragment StoreEntitySet="Группа">
+                <ScalarProperty Name="IdГруппы" ColumnName="IdГруппы" />
+                <ScalarProperty Name="NumГруппы" ColumnName="NumГруппы" />
+                <ScalarProperty Name="КодНагрузки" ColumnName="КодНагрузки" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Должность">
+            <EntityTypeMapping TypeName="LenkovetssModel.Должность">
+              <MappingFragment StoreEntitySet="Должность">
+                <ScalarProperty Name="IdДолжности" ColumnName="IdДолжности" />
+                <ScalarProperty Name="НаименованиеДолжности" ColumnName="НаименованиеДолжности" />
+                <ScalarProperty Name="Оклад" ColumnName="Оклад" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Нагрузка">
+            <EntityTypeMapping TypeName="LenkovetssModel.Нагрузка">
+              <MappingFragment StoreEntitySet="Нагрузка">
+                <ScalarProperty Name="IdНагрузки" ColumnName="IdНагрузки" />
+                <ScalarProperty Name="Колвочасов" ColumnName="Колвочасов" />
+                <ScalarProperty Name="Колвопредметов" ColumnName="Колвопредметов" />
+                <ScalarProperty Name="КодПредмета" ColumnName="КодПредмета" />
+                <ScalarProperty Name="КодПреподавателя" ColumnName="КодПреподавателя" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Предмет">
+            <EntityTypeMapping TypeName="LenkovetssModel.Предмет">
+              <MappingFragment StoreEntitySet="Предмет">
+                <ScalarProperty Name="IdПредмета" ColumnName="IdПредмета" />
+                <ScalarProperty Name="Часы" ColumnName="Часы" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Преподаватель">
+            <EntityTypeMapping TypeName="LenkovetssModel.Преподаватель">
+              <MappingFragment StoreEntitySet="Преподаватель">
+                <ScalarProperty Name="IdПреподавателя" ColumnName="IdПреподавателя" />
+                <ScalarProperty Name="Имя" ColumnName="Имя" />
+                <ScalarProperty Name="Фамилия" ColumnName="Фамилия" />
+                <ScalarProperty Name="Отчество" ColumnName="Отчество" />
+                <ScalarProperty Name="Стаж" ColumnName="Стаж" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="КодДолжности" ColumnName="КодДолжности" />
+                <ScalarProperty Name="КодУчёнойСтепени" ColumnName="КодУчёнойСтепени" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="УчёнаяСтепень">
+            <EntityTypeMapping TypeName="LenkovetssModel.УчёнаяСтепень">
+              <MappingFragment StoreEntitySet="УчёнаяСтепень">
+                <ScalarProperty Name="IdУчёнойСтепени" ColumnName="IdУчёнойСтепени" />
+                <ScalarProperty Name="НаименованиеУчёнойСтепени" ColumnName="НаименованиеУчёнойСтепени" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ALLS">
+            <EntityTypeMapping TypeName="LenkovetssModel.ALLS">
+              <MappingFragment StoreEntitySet="ALLS">
+                <ScalarProperty Name="Учеба" ColumnName="Учеба" />
+                <ScalarProperty Name="Стаж" ColumnName="Стаж" />
+                <ScalarProperty Name="Телефон" ColumnName="Телефон" />
+                <ScalarProperty Name="НаименованиеДолжности" ColumnName="НаименованиеДолжности" />
+                <ScalarProperty Name="Оклад" ColumnName="Оклад" />
+                <ScalarProperty Name="НаименованиеУчёнойСтепени" ColumnName="НаименованиеУчёнойСтепени" />
+                <ScalarProperty Name="Колвочасов" ColumnName="Колвочасов" />
+                <ScalarProperty Name="Колвопредметов" ColumnName="Колвопредметов" />
+                <ScalarProperty Name="Название" ColumnName="Название" />
+                <ScalarProperty Name="Часы" ColumnName="Часы" />
+                <ScalarProperty Name="NumГруппы" ColumnName="NumГруппы" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

@@ -1,0 +1,884 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Report MustUnderstand="df" xmlns="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner" xmlns:df="http://schemas.microsoft.com/sqlserver/reporting/2016/01/reportdefinition/defaultfontfamily">
+  <df:DefaultFontFamily>Segoe UI</df:DefaultFontFamily>
+  <AutoRefresh>0</AutoRefresh>
+  <DataSources>
+    <DataSource Name="DataSource1">
+      <ConnectionProperties>
+        <DataProvider>SQL</DataProvider>
+        <ConnectString>Data Source=.;Initial Catalog=Маршруты</ConnectString>
+        <IntegratedSecurity>true</IntegratedSecurity>
+      </ConnectionProperties>
+      <rd:SecurityType>Integrated</rd:SecurityType>
+      <rd:DataSourceID>2f473341-fcdf-4992-8d6a-55210f14ad67</rd:DataSourceID>
+    </DataSource>
+  </DataSources>
+  <DataSets>
+    <DataSet Name="DataSet1">
+      <Query>
+        <DataSourceName>DataSource1</DataSourceName>
+        <CommandText>SELECT
+  ВидыРабот.IDВидыРабот
+  ,ВидыРабот.Наименования
+  ,ВидыРабот.СтоимостьЗаДень
+  ,ВидыРабот.Описание
+  ,Водители.IDВодителя
+  ,Водители.Имя
+  ,Водители.Фамилия
+  ,Водители.Отчество
+  ,Водители.Стаж
+  ,Водители.КодКатегории
+  ,Категория.IDКатегории
+  ,Категория.Вид
+  ,Категория.Оклад
+  ,Маршрут.IDМаршрута
+  ,Маршрут.Название
+  ,Маршрут.Оплата
+  ,Маршрут.Дальность
+  ,Маршрут.КолВоДнейВПути
+  ,Машина.IDМашины
+  ,Машина.Марка
+  ,Машина.Номер
+  ,Машина.КолВо
+  ,Машина.ГодАвто
+  ,ПроделаннаяРабота.IDПроделаннаяРабота
+  ,ПроделаннаяРабота.Премии
+  ,ПроделаннаяРабота.Обьем
+  ,ПроделаннаяРабота.ДатаНачала
+  ,ПроделаннаяРабота.ДатаКонца
+  ,ПроделаннаяРабота.КодВидыРабот
+  ,ПроделаннаяРабота.КодВодителя
+  ,ПроделаннаяРабота.КодМаршрута
+  ,ПроделаннаяРабота.КодМашины
+FROM
+  Водители
+  INNER JOIN Категория
+    ON Водители.КодКатегории = Категория.IDКатегории
+  INNER JOIN ПроделаннаяРабота
+    ON Водители.IDВодителя = ПроделаннаяРабота.КодВодителя
+  INNER JOIN Маршрут
+    ON ПроделаннаяРабота.КодМаршрута = Маршрут.IDМаршрута
+  INNER JOIN Машина
+    ON ПроделаннаяРабота.КодМашины = Машина.IDМашины
+  INNER JOIN ВидыРабот
+    ON ПроделаннаяРабота.КодВидыРабот = ВидыРабот.IDВидыРабот</CommandText>
+        <rd:DesignerState>
+          <QueryDefinition xmlns="http://schemas.microsoft.com/ReportingServices/QueryDefinition/Relational">
+            <SelectedColumns>
+              <ColumnExpression ColumnOwner="ВидыРабот" ColumnName="IDВидыРабот" />
+              <ColumnExpression ColumnOwner="ВидыРабот" ColumnName="Наименования" />
+              <ColumnExpression ColumnOwner="ВидыРабот" ColumnName="СтоимостьЗаДень" />
+              <ColumnExpression ColumnOwner="ВидыРабот" ColumnName="Описание" />
+              <ColumnExpression ColumnOwner="Водители" ColumnName="IDВодителя" />
+              <ColumnExpression ColumnOwner="Водители" ColumnName="Имя" />
+              <ColumnExpression ColumnOwner="Водители" ColumnName="Фамилия" />
+              <ColumnExpression ColumnOwner="Водители" ColumnName="Отчество" />
+              <ColumnExpression ColumnOwner="Водители" ColumnName="Стаж" />
+              <ColumnExpression ColumnOwner="Водители" ColumnName="КодКатегории" />
+              <ColumnExpression ColumnOwner="Категория" ColumnName="IDКатегории" />
+              <ColumnExpression ColumnOwner="Категория" ColumnName="Вид" />
+              <ColumnExpression ColumnOwner="Категория" ColumnName="Оклад" />
+              <ColumnExpression ColumnOwner="Маршрут" ColumnName="IDМаршрута" />
+              <ColumnExpression ColumnOwner="Маршрут" ColumnName="Название" />
+              <ColumnExpression ColumnOwner="Маршрут" ColumnName="Оплата" />
+              <ColumnExpression ColumnOwner="Маршрут" ColumnName="Дальность" />
+              <ColumnExpression ColumnOwner="Маршрут" ColumnName="КолВоДнейВПути" />
+              <ColumnExpression ColumnOwner="Машина" ColumnName="IDМашины" />
+              <ColumnExpression ColumnOwner="Машина" ColumnName="Марка" />
+              <ColumnExpression ColumnOwner="Машина" ColumnName="Номер" />
+              <ColumnExpression ColumnOwner="Машина" ColumnName="КолВо" />
+              <ColumnExpression ColumnOwner="Машина" ColumnName="ГодАвто" />
+              <ColumnExpression ColumnOwner="ПроделаннаяРабота" ColumnName="IDПроделаннаяРабота" />
+              <ColumnExpression ColumnOwner="ПроделаннаяРабота" ColumnName="Премии" />
+              <ColumnExpression ColumnOwner="ПроделаннаяРабота" ColumnName="Обьем" />
+              <ColumnExpression ColumnOwner="ПроделаннаяРабота" ColumnName="ДатаНачала" />
+              <ColumnExpression ColumnOwner="ПроделаннаяРабота" ColumnName="ДатаКонца" />
+              <ColumnExpression ColumnOwner="ПроделаннаяРабота" ColumnName="КодВидыРабот" />
+              <ColumnExpression ColumnOwner="ПроделаннаяРабота" ColumnName="КодВодителя" />
+              <ColumnExpression ColumnOwner="ПроделаннаяРабота" ColumnName="КодМаршрута" />
+              <ColumnExpression ColumnOwner="ПроделаннаяРабота" ColumnName="КодМашины" />
+            </SelectedColumns>
+            <Joins>
+              <Join Type="CROSS JOIN" ColumnOwner="Водители" />
+              <Join Type="INNER JOIN" ColumnOwner="Категория">
+                <On>
+                  <From ColumnOwner="Водители" ColumnName="КодКатегории" />
+                  <To ColumnOwner="Категория" ColumnName="IDКатегории" />
+                </On>
+              </Join>
+              <Join Type="INNER JOIN" ColumnOwner="ПроделаннаяРабота">
+                <On>
+                  <From ColumnOwner="Водители" ColumnName="IDВодителя" />
+                  <To ColumnOwner="ПроделаннаяРабота" ColumnName="КодВодителя" />
+                </On>
+              </Join>
+              <Join Type="INNER JOIN" ColumnOwner="Маршрут">
+                <On>
+                  <From ColumnOwner="ПроделаннаяРабота" ColumnName="КодМаршрута" />
+                  <To ColumnOwner="Маршрут" ColumnName="IDМаршрута" />
+                </On>
+              </Join>
+              <Join Type="INNER JOIN" ColumnOwner="Машина">
+                <On>
+                  <From ColumnOwner="ПроделаннаяРабота" ColumnName="КодМашины" />
+                  <To ColumnOwner="Машина" ColumnName="IDМашины" />
+                </On>
+              </Join>
+              <Join Type="INNER JOIN" ColumnOwner="ВидыРабот">
+                <On>
+                  <From ColumnOwner="ПроделаннаяРабота" ColumnName="КодВидыРабот" />
+                  <To ColumnOwner="ВидыРабот" ColumnName="IDВидыРабот" />
+                </On>
+              </Join>
+            </Joins>
+          </QueryDefinition>
+        </rd:DesignerState>
+      </Query>
+      <Fields>
+        <Field Name="IDВидыРабот">
+          <DataField>IDВидыРабот</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="Наименования">
+          <DataField>Наименования</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="СтоимостьЗаДень">
+          <DataField>СтоимостьЗаДень</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Описание">
+          <DataField>Описание</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="IDВодителя">
+          <DataField>IDВодителя</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="Имя">
+          <DataField>Имя</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Фамилия">
+          <DataField>Фамилия</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Отчество">
+          <DataField>Отчество</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Стаж">
+          <DataField>Стаж</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="КодКатегории">
+          <DataField>КодКатегории</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="IDКатегории">
+          <DataField>IDКатегории</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="Вид">
+          <DataField>Вид</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Оклад">
+          <DataField>Оклад</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="IDМаршрута">
+          <DataField>IDМаршрута</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="Название">
+          <DataField>Название</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Оплата">
+          <DataField>Оплата</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Дальность">
+          <DataField>Дальность</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="КолВоДнейВПути">
+          <DataField>КолВоДнейВПути</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="IDМашины">
+          <DataField>IDМашины</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="Марка">
+          <DataField>Марка</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Номер">
+          <DataField>Номер</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="КолВо">
+          <DataField>КолВо</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ГодАвто">
+          <DataField>ГодАвто</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="IDПроделаннаяРабота">
+          <DataField>IDПроделаннаяРабота</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="Премии">
+          <DataField>Премии</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="Обьем">
+          <DataField>Обьем</DataField>
+          <rd:TypeName>System.Int32</rd:TypeName>
+        </Field>
+        <Field Name="ДатаНачала">
+          <DataField>ДатаНачала</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="ДатаКонца">
+          <DataField>ДатаКонца</DataField>
+          <rd:TypeName>System.DateTime</rd:TypeName>
+        </Field>
+        <Field Name="КодВидыРабот">
+          <DataField>КодВидыРабот</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="КодВодителя">
+          <DataField>КодВодителя</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="КодМаршрута">
+          <DataField>КодМаршрута</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+        <Field Name="КодМашины">
+          <DataField>КодМашины</DataField>
+          <rd:TypeName>System.Int64</rd:TypeName>
+        </Field>
+      </Fields>
+    </DataSet>
+  </DataSets>
+  <ReportSections>
+    <ReportSection>
+      <Body>
+        <ReportItems>
+          <Textbox Name="ReportTitle">
+            <CanGrow>true</CanGrow>
+            <KeepTogether>true</KeepTogether>
+            <Paragraphs>
+              <Paragraph>
+                <TextRuns>
+                  <TextRun>
+                    <Value>Отчет</Value>
+                    <Style>
+                      <FontFamily>Segoe UI Light</FontFamily>
+                      <FontSize>28pt</FontSize>
+                    </Style>
+                  </TextRun>
+                </TextRuns>
+                <Style />
+              </Paragraph>
+            </Paragraphs>
+            <rd:WatermarkTextbox>Title</rd:WatermarkTextbox>
+            <rd:DefaultName>ReportTitle</rd:DefaultName>
+            <Top>0mm</Top>
+            <Height>16.58056mm</Height>
+            <Width>139.7mm</Width>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+              <PaddingLeft>2pt</PaddingLeft>
+              <PaddingRight>2pt</PaddingRight>
+              <PaddingTop>2pt</PaddingTop>
+              <PaddingBottom>2pt</PaddingBottom>
+            </Style>
+          </Textbox>
+          <Tablix Name="Tablix2">
+            <TablixBody>
+              <TablixColumns>
+                <TablixColumn>
+                  <Width>25mm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>25mm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>25mm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>25mm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>25mm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>25mm</Width>
+                </TablixColumn>
+                <TablixColumn>
+                  <Width>25mm</Width>
+                </TablixColumn>
+              </TablixColumns>
+              <TablixRows>
+                <TablixRow>
+                  <Height>6mm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox10">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Название </Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox10</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox12">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Кол Во Дней ВПути</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox12</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox14">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Дальность</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox14</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox16">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Дата Начала</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox16</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox18">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Дата Конца</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox18</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox20">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Оплата</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox20</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Textbox22">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>Вид</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Textbox22</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+                <TablixRow>
+                  <Height>6mm</Height>
+                  <TablixCells>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Название">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Название.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Название</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="КолВоДнейВПути">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!КолВоДнейВПути.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>КолВоДнейВПути</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Дальность">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Дальность.Value</Value>
+                                  <Style />
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Дальность</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="ДатаНачала">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!ДатаНачала.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>ДатаНачала</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="ДатаКонца">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!ДатаКонца.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>ДатаКонца</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Оплата">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Оплата.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Оплата</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                    <TablixCell>
+                      <CellContents>
+                        <Textbox Name="Вид">
+                          <CanGrow>true</CanGrow>
+                          <KeepTogether>true</KeepTogether>
+                          <Paragraphs>
+                            <Paragraph>
+                              <TextRuns>
+                                <TextRun>
+                                  <Value>=Fields!Вид.Value</Value>
+                                  <Style>
+                                    <FontFamily>Arial</FontFamily>
+                                  </Style>
+                                </TextRun>
+                              </TextRuns>
+                              <Style />
+                            </Paragraph>
+                          </Paragraphs>
+                          <rd:DefaultName>Вид</rd:DefaultName>
+                          <Style>
+                            <Border>
+                              <Color>LightGrey</Color>
+                              <Style>Solid</Style>
+                            </Border>
+                            <PaddingLeft>2pt</PaddingLeft>
+                            <PaddingRight>2pt</PaddingRight>
+                            <PaddingTop>2pt</PaddingTop>
+                            <PaddingBottom>2pt</PaddingBottom>
+                          </Style>
+                        </Textbox>
+                      </CellContents>
+                    </TablixCell>
+                  </TablixCells>
+                </TablixRow>
+              </TablixRows>
+            </TablixBody>
+            <TablixColumnHierarchy>
+              <TablixMembers>
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+                <TablixMember />
+              </TablixMembers>
+            </TablixColumnHierarchy>
+            <TablixRowHierarchy>
+              <TablixMembers>
+                <TablixMember>
+                  <KeepWithGroup>After</KeepWithGroup>
+                </TablixMember>
+                <TablixMember>
+                  <Group Name="Details" />
+                </TablixMember>
+              </TablixMembers>
+            </TablixRowHierarchy>
+            <DataSetName>DataSet1</DataSetName>
+            <Top>36.39256mm</Top>
+            <Left>3.40783mm</Left>
+            <Height>12mm</Height>
+            <Width>175mm</Width>
+            <ZIndex>1</ZIndex>
+            <Style>
+              <Border>
+                <Style>None</Style>
+              </Border>
+            </Style>
+          </Tablix>
+        </ReportItems>
+        <Height>143.75694mm</Height>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+        </Style>
+      </Body>
+      <Width>197.55554mm</Width>
+      <Page>
+        <PageFooter>
+          <Height>46.53139mm</Height>
+          <PrintOnFirstPage>true</PrintOnFirstPage>
+          <PrintOnLastPage>true</PrintOnLastPage>
+          <ReportItems>
+            <Textbox Name="ExecutionTime">
+              <CanGrow>true</CanGrow>
+              <KeepTogether>true</KeepTogether>
+              <Paragraphs>
+                <Paragraph>
+                  <TextRuns>
+                    <TextRun>
+                      <Value>=Globals!ExecutionTime</Value>
+                      <Style />
+                    </TextRun>
+                  </TextRuns>
+                  <Style>
+                    <TextAlign>Right</TextAlign>
+                  </Style>
+                </Paragraph>
+              </Paragraphs>
+              <rd:DefaultName>ExecutionTime</rd:DefaultName>
+              <Top>5.08mm</Top>
+              <Left>101.6mm</Left>
+              <Height>6.35mm</Height>
+              <Width>50.8mm</Width>
+              <Style>
+                <Border>
+                  <Style>None</Style>
+                </Border>
+                <PaddingLeft>2pt</PaddingLeft>
+                <PaddingRight>2pt</PaddingRight>
+                <PaddingTop>2pt</PaddingTop>
+                <PaddingBottom>2pt</PaddingBottom>
+              </Style>
+            </Textbox>
+          </ReportItems>
+          <Style>
+            <Border>
+              <Style>None</Style>
+            </Border>
+          </Style>
+        </PageFooter>
+        <PageHeight>29.7cm</PageHeight>
+        <PageWidth>21cm</PageWidth>
+        <LeftMargin>2cm</LeftMargin>
+        <RightMargin>2cm</RightMargin>
+        <TopMargin>2cm</TopMargin>
+        <BottomMargin>2cm</BottomMargin>
+        <ColumnSpacing>0.13cm</ColumnSpacing>
+        <Style />
+      </Page>
+    </ReportSection>
+  </ReportSections>
+  <ReportParametersLayout>
+    <GridLayoutDefinition>
+      <NumberOfColumns>4</NumberOfColumns>
+      <NumberOfRows>2</NumberOfRows>
+    </GridLayoutDefinition>
+  </ReportParametersLayout>
+  <rd:ReportUnitType>Mm</rd:ReportUnitType>
+  <rd:ReportID>ee561562-e3da-4a11-9f92-c988309fc603</rd:ReportID>
+</Report>
